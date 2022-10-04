@@ -33,6 +33,7 @@ docker-compose контейнер запускает сервисы:
 вносит их в созданную таблицу test_canal в базе данных test PostgreSQL.
 
 Функции файла Update_PostgreSQL_DB.py:
+
     - get_rate возвращает текущий курс ЦБ РФ доллара США 
       к рублю посредством request файла json сайта ЦБ РФ
       
