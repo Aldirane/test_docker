@@ -1,0 +1,37 @@
+version: '3.4'
+
+services:
+  postgres_db:
+    image: postgres
+    ports:
+      - 5432:5432
+    restart: always
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: test
+      POSTGRES_HOST: '0.0.0.0'
+    networks:
+      - app-tier
+
+  python_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres_db
+    networks:
+      - app-tier
+      
+  adminer_db:
+    image: adminer
+    restart: always
+    networks:
+      - app-tier
+    depends_on:
+      - postgres_db
+    ports:
+      - 8080:8080
+
+networks:
+  app-tier:
