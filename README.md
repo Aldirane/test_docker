@@ -26,4 +26,3 @@ docker-compose контейнер запускает сервисы:
       который находит и возвращает google Sheets API
 Файл Update_PostgreSQL_DB.py обновляется каждые 10 секунд.
 
-скачать в одну директорию и выполнить в консоли: docker-compose up
