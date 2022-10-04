@@ -4,15 +4,16 @@
 Start:
     скачать в одну директорию все файлы с git репозитория
     и выполнить в консоли команду: docker-compose up
-    Для просмотра базы данных:
-    1) зайти по адресу http://localhost:8080/
-    2) ввести значения:
-        - сервер postgres_db
-        - имя пользователя: docker
-        - пароль: docker
-        - база данных: test
-    3) Перейти в раздел test найти таблицу test_canal 
-    и нажать "выбрать" чтобы увидеть таблицу базы данных.
+
+Для просмотра базы данных:
+1) зайти по адресу http://localhost:8080/
+2) ввести значения:
+    - сервер postgres_db
+    - имя пользователя: docker
+    - пароль: docker
+    - база данных: test
+3) Перейти в раздел test найти таблицу test_canal 
+и нажать "выбрать" чтобы увидеть таблицу базы данных.
     
 docker-compose контейнер запускает сервисы:
 - postgres_db "база данных PostgreSQL"
@@ -26,12 +27,22 @@ docker-compose контейнер запускает сервисы:
     google-api-python-client для запроса к серверу google cloud
     google-auth-httplib2 и google-auth-oauthlib для аутентификации с помощью credentials.json пользователя 
 
-Назначение файла Update_PostgreSQL_DB.py авторизоваться в googleAPI для доступа к googleSheetsAPI,
-который возвращает значения в excel таблице "test" и занесения их в созданную таблицу test_canal в базе данных test PostgreSQL.
+Назначение файла Update_PostgreSQL_DB.py 
+авторизоваться в googleAPI для доступа к googleSheetsAPI,
+который возвращает значения values в excel таблице "test" и 
+вносит их в созданную таблицу test_canal в базе данных test PostgreSQL.
+
 Функции файла Update_PostgreSQL_DB.py:
-    - get_rate возвращает текущий курс ЦБ РФ доллара США к рублю посредством request файла json сайта ЦБ РФ
-    - update_data подключается к базе данных test PostgreSQL, затем создает таблицу и вставляет полученные значения с функции get_sheets.
-    - get_sheets авторизуется постредством credentials.json в google auth API, затем скачивает найденные данные с помощью google Discovery API
+    - get_rate возвращает текущий курс ЦБ РФ доллара США 
+      к рублю посредством request файла json сайта ЦБ РФ
+      
+    - update_data подключается к базе данных test PostgreSQL, 
+      затем создает таблицу и вставляет полученные значения с функции get_sheets.
+      
+    - get_sheets авторизуется постредством credentials.json 
+      в google auth API, затем скачивает найденные данные 
+      с помощью google Discovery API
       который находит и возвращает google Sheets API
+
 Файл Update_PostgreSQL_DB.py обновляется каждые 10 секунд.
 
